@@ -1,0 +1,24 @@
+# Dependencias
+/node_modules/
+/vendor/
+
+# Variables de entorno
+.env
+
+# Archivos generados por el build
+/public/build/*
+
+# Mantener la carpeta
+!/public/build/.gitkeep
+
+# Logs
+/storage/logs/*
+!/storage/logs/.gitkeep
+
+# Exportaciones
+/storage/exports/*
+!/storage/exports/.gitkeep
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
