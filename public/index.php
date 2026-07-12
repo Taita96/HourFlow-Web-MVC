@@ -2,23 +2,14 @@
 
 declare(strict_types=1);
 
-require dirname(__DIR__) . '/vendor/autoload.php';
-//dirname me ayuda a ir un nivel arriba de la carpeta actual, 
-// en este caso public, para poder acceder a la carpeta vendor y cargar el autoload.php que genera composer
+require dirname(__DIR__) . '/includes/App.php';
 
-use App\Database\Database;
-use  Dotenv\Dotenv;
+use App\Core\Router;
+use App\Controllers\IndexController;
 
-$dotenv = Dotenv::createImmutable(dirname(__DIR__));
-$dotenv->load();
+$router = new Router();
 
-header('Content-Type: application/json; charset=utf-8');
+$router->get('/', [IndexController::class, 'index']);
 
-try {
-    Database::connect();
-    echo "OK: conexión a la base de datos exitosa." . "\n";
-} catch (Throwable $e) {
-    http_response_code(500);
-    echo "Error: " . $e->getMessage() . "\n";
-}
+$router->resolve();
 
