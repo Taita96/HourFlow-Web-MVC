@@ -55,6 +55,6 @@ class Router
         include_once dirname(__DIR__, 2) . "/resources/views/{$view}.php"; // incluye la vista
         $content = ob_get_clean(); // obtiene el contenido del búfer y lo limpia
 
-        include_once dirname(__DIR__, 2) . "/resources/views/layout.php"; // incluye el layout
+        include_once dirname(__DIR__, 2) . "/resources/views/Layout.php"; // incluye el layout
     }
 }
