@@ -1,0 +1,36 @@
+# ---- Etapa 1: build de assets (Tailwind + Webpack) ----
+FROM node:20-alpine AS node_build
+WORKDIR /app
+COPY package.json package-lock.json ./
+RUN npm ci
+COPY resources ./resources
+COPY webpack.config.js postcss.config.js ./
+RUN npm run build
+
+# ---- Etapa 2: imagen final — PHP con sus extensiones ya instaladas,
+#      y ahí mismo pongo en marcha composer install (mismo entorno)
+FROM php:8.4-fpm-alpine
+
+RUN apk add --no-cache \
+        libpng-dev \
+        libjpeg-turbo-dev \
+        freetype-dev \
+        libzip-dev \
+        oniguruma-dev \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install pdo pdo_mysql gd zip mbstring opcache
+
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
+
+WORKDIR /var/www/html
+
+COPY composer.json composer.lock ./
+RUN composer install --no-dev --optimize-autoloader --no-interaction --no-scripts
+
+COPY . .
+RUN composer dump-autoload --optimize --no-dev
+
+COPY --from=node_build /app/public/build ./public/build
+COPY docker/php/php.prod.ini /usr/local/etc/php/conf.d/hourflow.ini
+
+RUN chown -R www-data:www-data /var/www/html/storage

@@ -4,7 +4,10 @@
 
 # Variables de entorno
 .env
-
+#aqui agrego para prod ---
+.env.*
+!.env.example
+# -----
 # Archivos generados por el build
 /public/build/*
 

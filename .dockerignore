@@ -1,0 +1,8 @@
+.git
+node_modules
+vendor
+public/build
+storage/logs/*
+storage/exports/*
+.env
+.env.production

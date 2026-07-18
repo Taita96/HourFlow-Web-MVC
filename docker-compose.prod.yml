@@ -1,0 +1,43 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: docker/php/Dockerfile.prod
+    container_name: hourflow_app
+    restart: unless-stopped
+    env_file:
+      - .env.production
+    networks:
+      - hourflow
+
+  webserver:
+    build:
+      context: .
+      dockerfile: docker/nginx/Dockerfile.prod
+    container_name: hourflow_nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    depends_on:
+      - app
+    networks:
+      - hourflow
+
+  db:
+    image: mysql:8.0
+    container_name: hourflow_db
+    restart: unless-stopped
+    env_file:
+      - .env.production
+    volumes:
+      - hourflow_db_data:/var/lib/mysql
+      - ./hourflow.sql:/docker-entrypoint-initdb.d/hourflow.sql
+    networks:
+      - hourflow
+
+networks:
+  hourflow:
+    driver: bridge
+
+volumes:
+  hourflow_db_data:
