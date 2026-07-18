@@ -1,0 +1,35 @@
+{
+  "name": "hourflow",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack --mode development --watch",
+    "build": "webpack --mode production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Taita96/HourFlow-Web-MVC.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Taita96/HourFlow-Web-MVC/issues"
+  },
+  "homepage": "https://github.com/Taita96/HourFlow-Web-MVC#readme",
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.3.3",
+    "autoprefixer": "^10.5.4",
+    "css-loader": "^7.1.4",
+    "mini-css-extract-plugin": "^2.10.2",
+    "postcss": "^8.5.19",
+    "postcss-loader": "^8.2.1",
+    "tailwindcss": "^4.3.3",
+    "webpack": "^5.108.4",
+    "webpack-cli": "^7.2.1"
+  },
+  "dependencies": {
+    "chart.js": "^4.5.1"
+  }
+}
