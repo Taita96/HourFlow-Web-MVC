@@ -37,13 +37,13 @@
         </div>
 
         <!-- Mobile: "sm:hidden" lo apaga en escritorio pase lo que pase con el JS -->
-        <div id="nav-links-mobile" class="hidden sm:hidden flex-col gap-3 px-4 pb-4 text-sm">
+        <div id="nav-links-mobile" class="hidden sm:hidden flex flex-col gap-1.5 px-4 pb-4 text-sm">
             <?php if (isset($_SESSION['user_id'])): ?>
                 <a href="/" class="hover:underline block">Inicio</a>
                 <a href="/tiendas" class="hover:underline block">Empresas</a>
                 <a href="/schedules" class="hover:underline block">Horarios</a>
                 <a href="/records" class="hover:underline block">Horas trabajadas</a>
-                <span class="opacity-80 block">Hola, <?php echo e($_SESSION['user_name'] ?? ''); ?></span>
+                <span class="opacity-80 block mt-3">Hola, <?php echo e($_SESSION['user_name'] ?? ''); ?></span>
                 <a href="/logout" class="bg-white text-blue-600 px-3 py-1 rounded hover:bg-gray-100 inline-block w-fit">Cerrar sesión</a>
             <?php else: ?>
                 <a href="/login" class="hover:underline block">Iniciar sesión</a>
