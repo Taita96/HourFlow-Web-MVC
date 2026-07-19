@@ -1,8 +1,8 @@
-<div class="flex items-center justify-between mb-4">
+<div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between mb-4">
     <h2 class="text-2xl font-bold">Mis horas trabajadas</h2>
-    <form method="GET" action="/records" class="flex gap-4">
+    <form method="GET" action="/records" class="flex flex-wrap gap-2 sm:gap-4">
         <select name="tienda" class="border rounded p-1" onchange="this.form.submit()">
-            <option value="">Todas las tiendas</option>
+            <option value="">Todas las empresas</option>
             <?php foreach ($tiendas as $tienda): ?>
                 <option value="<?php echo (int) $tienda['id']; ?>" <?php echo ((int) $tienda['id'] === $tiendaId) ? 'selected' : ''; ?>>
                     <?php echo e($tienda['nombre']); ?>
@@ -19,7 +19,7 @@
 </div>
 
 <div class="bg-white p-4 rounded shadow mb-4">
-    <div class="flex gap-6 text-sm">
+    <div class="flex flex-wrap gap-4 text-sm">
         <span>Planeado del mes: <strong><?php echo e($totals['planned_label']); ?></strong></span>
         <span>Trabajado del mes: <strong><?php echo e($totals['worked_label']); ?></strong></span>
         <span class="<?php echo $totals['extra_positive'] ? 'text-green-600' : 'text-red-600'; ?>">
@@ -39,7 +39,7 @@
 <?php else: ?>
     <ul class="space-y-2">
         <?php foreach ($records as $record): ?>
-            <li class="border p-3 rounded flex items-center justify-between">
+            <li class="border p-3 rounded flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                 <span>
                     <?php echo e($record['fecha']); ?>
                     <span class="text-sm text-gray-500">
@@ -50,7 +50,7 @@
                     </span>
                 </span>
 
-                <div class="text-sm mt-2 flex gap-4">
+                <div class="text-sm flex flex-wrap gap-3 sm:gap-4">
                     <span>Trabajado: <?php echo e($record['worked_label']); ?></span>
                     <?php if ($record['planned_label'] !== null): ?>
                         <span>Planeado: <?php echo e($record['planned_label']); ?></span>

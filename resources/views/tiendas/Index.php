@@ -1,11 +1,11 @@
-<h2 class="text-2xl font-bold mb-4">Empresas y sucursales</h2>
+<h2 class="text-2xl font-bold mb-4">Empresas</h2>
 
 <a href="/tiendas/create" class="inline-block mb-4 px-4 py-2 bg-blue-600 text-white rounded">
-    Agregar empresa o sucursal
+    Agregar empresa
 </a>
 
 <?php if (empty($tiendas)): ?>
-    <p>Todavía no tienes empresas o sucursales creadas.</p>
+    <p>Todavía no tienes nombre de empresas creadas.</p>
 <?php else: ?>
     <ul class="space-y-2">
         <?php foreach ($tiendas as $tienda): ?>

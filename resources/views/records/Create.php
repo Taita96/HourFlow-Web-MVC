@@ -10,7 +10,7 @@
 
 <?php if (empty($tiendas)): ?>
     <p class="text-red-600 mb-4">
-        Primero debes crear una tienda. <a href="/tiendas/create" class="underline">Crear tienda</a>
+        Primero debes añadir un nombre de empresa. <a href="/tiendas/create" class="underline">Añadir nombre de empresa</a>
     </p>
 <?php else: ?>
 <form method="POST" action="/records" class="space-y-4 max-w-md">
@@ -21,9 +21,9 @@
     </div>
 
     <div>
-        <label class="block font-medium">Tienda</label>
+        <label class="block font-medium">Empresa</label>
         <select name="tienda_id" id="tienda_id" class="border rounded w-full p-2" required>
-            <option value="">-- Selecciona una tienda --</option>
+            <option value="">-- Selecciona una empresa --</option>
             <?php foreach ($tiendas as $tienda): ?>
                 <option value="<?php echo (int) $tienda['id']; ?>"><?php echo e($tienda['nombre']); ?></option>
             <?php endforeach; ?>

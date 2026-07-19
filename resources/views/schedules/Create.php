@@ -17,9 +17,9 @@
     <?php echo csrfField(); ?>
 
     <div>
-        <label class="block font-medium">Tienda</label>
+        <label class="block font-medium">Empresa</label>
         <select name="tienda_id" class="border rounded w-full p-2" required>
-            <option value="">-- Selecciona una tienda --</option>
+            <option value="">-- Selecciona una empresa --</option>
             <?php foreach ($tiendas as $tienda): ?>
                 <option value="<?php echo (int) $tienda['id']; ?>" <?php echo ((int) $tienda['id'] === (int) ($tienda_id ?? 0)) ? 'selected' : ''; ?>>
                     <?php echo e($tienda['nombre']); ?>
@@ -29,7 +29,7 @@
     </div>
 
     <div>
-        <label class="block font-medium">Nombre del horario</label>
+        <label class="block font-medium">Nombre del horario (Tienda donde trabajas)</label>
         <input type="text" name="nombre" value="<?php echo e($nombre ?? ''); ?>" class="border rounded w-full p-2" required>
     </div>
 
