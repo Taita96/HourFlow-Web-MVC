@@ -7,11 +7,12 @@
 <?php else: ?>
     <ul class="space-y-2">
         <?php foreach ($schedules as $schedule): ?>
-            <li class="border p-3 rounded flex items-center justify-between">
-               <span><?php echo e($schedule['nombre']); ?> <span class="text-sm text-gray-500">(<?php echo e($schedule['tienda_nombre']); ?>)</span></span>
+            <li class="border p-3 rounded flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                <span><?php echo e($schedule['nombre']); ?> <span class="text-sm text-gray-500">(<?php echo e($schedule['tienda_nombre']); ?>)</span></span>
                 <div class="flex gap-3 items-center">
                     <a href="/schedules/edit?id=<?php echo (int) $schedule['id']; ?>" class="text-blue-600 hover:underline">Editar</a>
                     <form method="POST" action="/schedules/delete" onsubmit="return confirm('¿Seguro que quieres borrar este horario?');">
+                        <?php echo csrfField(); ?>
                         <input type="hidden" name="id" value="<?php echo (int) $schedule['id']; ?>">
                         <button type="submit" class="text-red-600 hover:underline">Borrar</button>
                     </form>
